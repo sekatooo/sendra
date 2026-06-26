@@ -1,0 +1,12 @@
+{
+  "name": "sendra",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npx @electron/packager . Sendra --platform=win32 --arch=x64 --icon=icon.ico --out=dist --overwrite --asar"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}
