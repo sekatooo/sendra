@@ -1,0 +1,15 @@
+{
+  "name": "sendra",
+  "version": "1.0.0",
+  "description": "Sendra - Social Media Platform",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager . Sendra --platform=win32 --arch=x64 --out=dist --overwrite --no-prune --ignore=node_modules"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.1",
+    "electron": "^33.0.0",
+    "electron-packager": "^17.1.2"
+  }
+}
