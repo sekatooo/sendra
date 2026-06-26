@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sendra</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="logo">Sendra</div>
+
+  <div class="nav-item active" onclick="showPage('home')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    Accueil
+  </div>
+
+  <div class="nav-item" onclick="toast('Recherche')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </div>
+    Rechercher
+  </div>
+
+  <div class="nav-item" onclick="toast('Explorer')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
+    </div>
+    Explorer
+  </div>
+
+  <div class="nav-item" onclick="toast('Reels')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/>
+      </svg>
+    </div>
+    Reels
+  </div>
+
+  <div class="nav-item" onclick="toast('Messages directs')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+    </div>
+    Messages
+  </div>
+
+  <div class="nav-item" onclick="toast('Notifications')">
+    <div class="nav-icon">
+      <div class="nav-notif" id="notif-badge">3</div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+      </svg>
+    </div>
+    Notifications
+  </div>
+
+  <div class="nav-item" onclick="toast('Créer une publication')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+      </svg>
+    </div>
+    Créer
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="nav-item" onclick="toast('Profil de sendra')">
+      <img src="https://i.pravatar.cc/150?img=47" class="nav-avatar" alt="profil">
+      Profil
+    </div>
+    <div class="nav-item" onclick="toast('Plus d\'options')">
+      <div class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </div>
+      Plus
+    </div>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="feed-col">
+
+    <div class="stories-bar">
+      <div class="story-item">
+        <button class="story-add-btn">+</button>
+        <span class="story-name">Votre story</span>
+      </div>
+
+      <div class="story-item" onclick="openStory(0)">
+        <div class="story-ring">
+          <img src="https://i.pravatar.cc/150?img=12" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">lea.photo</span>
+      </div>
+      <div class="story-item" onclick="openStory(1)">
+        <div class="story-ring">
+          <img src="https://i.pravatar.cc/150?img=33" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">marco_v</span>
+      </div>
+      <div class="story-item" onclick="openStory(2)">
+        <div class="story-ring">
+          <img src="https://i.pravatar.cc/150?img=5" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">sophie_art</span>
+      </div>
+      <div class="story-item" onclick="openStory(3)">
+        <div class="story-ring seen">
+          <img src="https://i.pravatar.cc/150?img=60" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">thomas.k</span>
+      </div>
+      <div class="story-item" onclick="openStory(4)">
+        <div class="story-ring">
+          <img src="https://i.pravatar.cc/150?img=22" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">nina_travels</span>
+      </div>
+      <div class="story-item" onclick="openStory(5)">
+        <div class="story-ring seen">
+          <img src="https://i.pravatar.cc/150?img=41" class="story-avatar" alt="">
+        </div>
+        <span class="story-name">alex.design</span>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="post-avatar-wrap">
+          <img src="https://i.pravatar.cc/150?img=12" class="post-avatar" alt="">
+        </div>
+        <div class="post-meta">
+          <div class="post-username">lea.photo</div>
+          <div class="post-location">Paris, France</div>
+        </div>
+        <button class="post-more">···</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" class="post-img" alt="post" ondblclick="likePost(this)">
+      <div class="post-actions">
+        <button class="action-btn" onclick="toggleLike(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Commentaire')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Partager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="action-btn save-btn" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 21 12 16 5 21 5 3 19 3 19 21"/></svg>
+        </button>
+      </div>
+      <div class="post-likes" id="likes1">12 482 J'aime</div>
+      <div class="post-caption"><strong>lea.photo</strong> La lumière dorée sur les toits de Paris 🌅 Certains matins valent le lever tôt... #Paris #Photography #GoldenHour</div>
+      <div class="post-comments-count" onclick="toast('Voir les commentaires')">Voir les 84 commentaires</div>
+      <div class="post-time">il y a 2 heures</div>
+      <div class="post-comment-input-wrap">
+        <input class="post-comment-input" placeholder="Ajouter un commentaire..." oninput="togglePostBtn(this)">
+        <button class="comment-post-btn" onclick="postComment(this)">Publier</button>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="post-avatar-wrap">
+          <img src="https://i.pravatar.cc/150?img=33" class="post-avatar" alt="">
+        </div>
+        <div class="post-meta">
+          <div class="post-username">marco_v</div>
+          <div class="post-location">Barcelona, Espagne</div>
+        </div>
+        <button class="post-more">···</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" class="post-img" alt="post" ondblclick="likePost(this)">
+      <div class="post-actions">
+        <button class="action-btn liked" onclick="toggleLike(this)">
+          <svg viewBox="0 0 24 24" fill="#ff3040" stroke="#ff3040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Commentaire')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Partager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="action-btn save-btn" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 21 12 16 5 21 5 3 19 3 19 21"/></svg>
+        </button>
+      </div>
+      <div class="post-likes">8 741 J'aime</div>
+      <div class="post-caption"><strong>marco_v</strong> Weekend à Barcelone 🏗️ L'architecture de Gaudí n'arrêtera jamais de m'époustoufler. La Sagrada Família under a perfect sky ✨</div>
+      <div class="post-comments-count" onclick="toast('Voir les commentaires')">Voir les 213 commentaires</div>
+      <div class="post-time">il y a 5 heures</div>
+      <div class="post-comment-input-wrap">
+        <input class="post-comment-input" placeholder="Ajouter un commentaire..." oninput="togglePostBtn(this)">
+        <button class="comment-post-btn" onclick="postComment(this)">Publier</button>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <div class="post-avatar-wrap no-story">
+          <img src="https://i.pravatar.cc/150?img=5" class="post-avatar" alt="">
+        </div>
+        <div class="post-meta">
+          <div class="post-username">sophie_art</div>
+        </div>
+        <button class="post-more">···</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?w=600&q=80" class="post-img" alt="post" ondblclick="likePost(this)">
+      <div class="post-actions">
+        <button class="action-btn" onclick="toggleLike(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Commentaire')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </button>
+        <button class="action-btn" onclick="toast('Partager')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+        <button class="action-btn save-btn saved" onclick="toggleSave(this)">
+          <svg viewBox="0 0 24 24" fill="#262626" stroke="#262626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 21 12 16 5 21 5 3 19 3 19 21"/></svg>
+        </button>
+      </div>
+      <div class="post-likes">3 129 J'aime</div>
+      <div class="post-caption"><strong>sophie_art</strong> Nouvelle série en cours 🎨 Huile sur toile, format 80x100. Je laisse la couleur parler d'elle-même... #ArtContemporain #Peinture #Abstrait</div>
+      <div class="post-comments-count" onclick="toast('Voir les commentaires')">Voir les 47 commentaires</div>
+      <div class="post-time">il y a 1 jour</div>
+      <div class="post-comment-input-wrap">
+        <input class="post-comment-input" placeholder="Ajouter un commentaire..." oninput="togglePostBtn(this)">
+        <button class="comment-post-btn" onclick="postComment(this)">Publier</button>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="right-panel">
+    <div class="right-you-row">
+      <img src="https://i.pravatar.cc/150?img=47" class="right-you-avatar" alt="">
+      <div class="right-you-info">
+        <div class="right-you-name">sendra</div>
+        <div class="right-you-full">Sendra Officiel</div>
+      </div>
+      <button class="switch-btn">Changer</button>
+    </div>
+
+    <div class="user-suggest-header">
+      <span class="user-suggest-title">Suggestions pour vous</span>
+      <span class="user-suggest-see-all" onclick="toast('Voir tout')">Voir tout</span>
+    </div>
+
+    <div class="suggest-user">
+      <img src="https://i.pravatar.cc/150?img=22" class="suggest-avatar" alt="">
+      <div class="suggest-info">
+        <div class="suggest-name">nina_travels</div>
+        <div class="suggest-sub">Suivi par lea.photo</div>
+      </div>
+      <button class="suggest-follow-btn" onclick="toggleFollow(this)">S'abonner</button>
+    </div>
+
+    <div class="suggest-user">
+      <img src="https://i.pravatar.cc/150?img=15" class="suggest-avatar" alt="">
+      <div class="suggest-info">
+        <div class="suggest-name">julien.prod</div>
+        <div class="suggest-sub">Nouveau sur Sendra</div>
+      </div>
+      <button class="suggest-follow-btn" onclick="toggleFollow(this)">S'abonner</button>
+    </div>
+
+    <div class="suggest-user">
+      <img src="https://i.pravatar.cc/150?img=55" class="suggest-avatar" alt="">
+      <div class="suggest-info">
+        <div class="suggest-name">camille.style</div>
+        <div class="suggest-sub">Suivi par marco_v</div>
+      </div>
+      <button class="suggest-follow-btn" onclick="toggleFollow(this)">S'abonner</button>
+    </div>
+
+    <div class="suggest-user">
+      <img src="https://i.pravatar.cc/150?img=68" class="suggest-avatar" alt="">
+      <div class="suggest-info">
+        <div class="suggest-name">raph.photo</div>
+        <div class="suggest-sub">Suivi par 3 de vos amis</div>
+      </div>
+      <button class="suggest-follow-btn" onclick="toggleFollow(this)">S'abonner</button>
+    </div>
+
+    <div class="suggest-user">
+      <img src="https://i.pravatar.cc/150?img=36" class="suggest-avatar" alt="">
+      <div class="suggest-info">
+        <div class="suggest-name">ana.ceramics</div>
+        <div class="suggest-sub">Nouveau sur Sendra</div>
+      </div>
+      <button class="suggest-follow-btn" onclick="toggleFollow(this)">S'abonner</button>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">À propos</a> · <a href="#">Aide</a> · <a href="#">Presse</a> · <a href="#">API</a> · <a href="#">Emplois</a> · <a href="#">Confidentialité</a> · <a href="#">Conditions</a><br><br>
+      © 2025 SENDRA
+    </div>
+  </aside>
+</main>
+
+<div class="modal-overlay" id="storyModal" onclick="closeStoryOnOverlay(event)">
+  <div class="story-modal" id="storyModalBox">
+    <img src="" id="storyBg" class="story-bg" alt="">
+    <div class="story-top-bar">
+      <div class="story-progress-row" id="storyProgressRow"></div>
+      <div class="story-user-row">
+        <img src="" id="storyUserAvatar" class="story-user-avatar" alt="">
+        <span id="storyUserName" class="story-user-name"></span>
+        <span class="story-time">il y a 1 h</span>
+        <button class="story-close" onclick="closeStory()">✕</button>
+      </div>
+    </div>
+    <div class="story-reply">
+      <input class="story-reply-input" placeholder="Répondre à ..." id="storyReplyInput">
+      <button class="story-reply-emoji">❤️</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
