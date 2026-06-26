@@ -7,15 +7,7 @@ const stories = [
   { name: 'alex.design', avatar: 'https://i.pravatar.cc/150?img=41', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&q=80' },
 ];
 
-const userProfile = {
-  username: 'sendra',
-  fullName: 'Sendra Officiel',
-  avatar: 'https://i.pravatar.cc/150?img=47',
-  bio: 'Bienvenue sur Sendra ✨\nPartagez vos moments préférés',
-  followers: 12580,
-  following: 843,
-  posts: 342
-};
+let currentUser = null;
 
 const messages = [
   { id: 1, name: 'lea.photo', avatar: 'https://i.pravatar.cc/150?img=12', lastMsg: 'Superbe photo ! 📸', time: '2 min', online: true },
@@ -65,10 +57,122 @@ const profilePosts = [
 ];
 
 function initApp() {
+  const session = localStorage.getItem('sendra_session');
+  if (session) {
+    const users = JSON.parse(localStorage.getItem('sendra_users') || '[]');
+    currentUser = users.find(u => u.username === session);
+    if (currentUser) {
+      document.getElementById('authScreen').style.display = 'none';
+      document.querySelector('.sidebar').style.display = 'flex';
+      document.querySelector('.main').style.display = 'flex';
+      updateProfilePage();
+      renderMessages();
+      renderReels();
+      renderProfilePosts();
+      showPage('home');
+      return;
+    }
+  }
+  document.getElementById('authScreen').style.display = 'flex';
+  document.querySelector('.sidebar').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+}
+
+function showLogin() {
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('signupForm').style.display = 'none';
+  document.querySelector('.auth-title').textContent = 'Connexion';
+  document.querySelector('.auth-toggle').innerHTML = `Vous n'avez pas de compte ? <a href="#" onclick="showSignup(); return false">Inscrivez-vous</a>`;
+}
+
+function showSignup() {
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('signupForm').style.display = 'block';
+  document.querySelector('.auth-title').textContent = 'Inscription';
+  document.querySelector('.auth-toggle').innerHTML = `Vous avez déjà un compte ? <a href="#" onclick="showLogin(); return false">Connectez-vous</a>`;
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const username = document.getElementById('loginUsername').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+  const users = JSON.parse(localStorage.getItem('sendra_users') || '[]');
+  const user = users.find(u => u.username === username && u.password === password);
+  if (!user) { toast('Identifiant ou mot de passe incorrect'); return; }
+  currentUser = user;
+  localStorage.setItem('sendra_session', username);
+  document.getElementById('authScreen').style.display = 'none';
+  document.querySelector('.sidebar').style.display = 'flex';
+  document.querySelector('.main').style.display = 'flex';
+  updateProfilePage();
   renderMessages();
   renderReels();
   renderProfilePosts();
   showPage('home');
+  toast('Bienvenue ' + username + ' ✓');
+}
+
+function handleSignup(e) {
+  e.preventDefault();
+  const username = document.getElementById('signupUsername').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value.trim();
+  if (!username || !email || !password) { toast('Remplissez tous les champs'); return; }
+  if (password.length < 4) { toast('Mot de passe trop court (min 4 caractères)'); return; }
+  const users = JSON.parse(localStorage.getItem('sendra_users') || '[]');
+  if (users.find(u => u.username === username)) { toast('Ce nom d\'utilisateur existe déjà'); return; }
+  const avatars = ['https://i.pravatar.cc/150?img=47','https://i.pravatar.cc/150?img=12','https://i.pravatar.cc/150?img=33','https://i.pravatar.cc/150?img=5','https://i.pravatar.cc/150?img=60','https://i.pravatar.cc/150?img=22'];
+  const newUser = {
+    username, email, password,
+    fullName: username,
+    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+    bio: 'Nouveau sur Sendra ✨',
+    followers: 0, following: 0, posts: 0
+  };
+  users.push(newUser);
+  localStorage.setItem('sendra_users', JSON.stringify(users));
+  currentUser = newUser;
+  localStorage.setItem('sendra_session', username);
+  document.getElementById('authScreen').style.display = 'none';
+  document.querySelector('.sidebar').style.display = 'flex';
+  document.querySelector('.main').style.display = 'flex';
+  updateProfilePage();
+  renderMessages();
+  renderReels();
+  renderProfilePosts();
+  showPage('home');
+  toast('Compte créé ! Bienvenue ' + username + ' 🎉');
+}
+
+function logout() {
+  localStorage.removeItem('sendra_session');
+  currentUser = null;
+  document.getElementById('authScreen').style.display = 'flex';
+  document.querySelector('.sidebar').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  document.getElementById('loginUsername').value = '';
+  document.getElementById('loginPassword').value = '';
+  document.getElementById('signupUsername').value = '';
+  document.getElementById('signupEmail').value = '';
+  document.getElementById('signupPassword').value = '';
+  showLogin();
+  toggleMoreMenu();
+  toast('Déconnecté ✓');
+}
+
+function updateProfilePage() {
+  if (!currentUser) return;
+  document.getElementById('profUsername').textContent = currentUser.username;
+  document.getElementById('profFullName').textContent = currentUser.fullName;
+  document.querySelectorAll('.right-you-name').forEach(el => el.textContent = currentUser.username);
+  document.querySelectorAll('.right-you-full').forEach(el => el.textContent = currentUser.fullName);
+  document.querySelectorAll('.nav-avatar').forEach(el => el.src = currentUser.avatar);
+  document.querySelectorAll('.right-you-avatar').forEach(el => el.src = currentUser.avatar);
+  document.querySelectorAll('.profile-avatar-large').forEach(el => el.src = currentUser.avatar);
+  document.getElementById('profPosts').textContent = currentUser.posts;
+  document.getElementById('profFollowers').textContent = currentUser.followers >= 1000 ? (currentUser.followers/1000).toFixed(1) + 'k' : currentUser.followers;
+  document.getElementById('profFollowing').textContent = currentUser.following;
+  document.getElementById('profBio').innerHTML = currentUser.bio.replace(/\n/g, '<br>');
 }
 
 function showPage(page) {
