@@ -744,10 +744,7 @@ function openAccessibilityModal() {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
       Augmenter la taille du texte
     </div>
-    <div class="modal-menu-item" onclick="document.body.style.filter=document.body.style.filter==='invert(1)'?'':'invert(1)'; toast('Contraste modifi\u00e9')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 010 20 10 10 0 010-20z"/></svg>
-      Mode contrast\u00e9
-    </div>
+
     <div class="modal-menu-item" onclick="toast('Sons d\u00e9sactiv\u00e9s'); closeModal()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
       D\u00e9sactiver les sons
